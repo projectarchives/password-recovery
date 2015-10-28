@@ -11,6 +11,7 @@
 
 | Packet Name	| Header
 | ---           |:---
+| GETENTRIES	| 130
 
 ## Dependencies
 
