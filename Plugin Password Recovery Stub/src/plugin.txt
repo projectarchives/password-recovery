@@ -1,0 +1,1 @@
+jrat.plugin.recovery.stub.RecoveryPlugin
