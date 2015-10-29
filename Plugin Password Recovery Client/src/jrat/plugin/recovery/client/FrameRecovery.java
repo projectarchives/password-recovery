@@ -20,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import jrat.api.Client;
+import jrat.api.Icons;
 
 @SuppressWarnings("serial")
 public class FrameRecovery extends JFrame {
@@ -42,6 +43,7 @@ public class FrameRecovery extends JFrame {
 		});
 		INSTANCE = this;
 		this.clients = c;
+		setIconImage(Icons.getIcon("Password Recovery", "/icons/icon.png").getImage());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 535, 370);
 		contentPane = new JPanel();
