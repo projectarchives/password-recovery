@@ -1,18 +1,25 @@
 package jrat.plugin.recovery.client;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import jrat.api.Client;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 @SuppressWarnings("serial")
 public class FrameRecovery extends JFrame {
@@ -24,8 +31,9 @@ public class FrameRecovery extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private DefaultTableModel model;
+	private JPopupMenu popupMenu;
 
-	public FrameRecovery(List<Client> clients) {
+	public FrameRecovery(List<Client> c) {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosed(WindowEvent e) {
@@ -33,7 +41,7 @@ public class FrameRecovery extends JFrame {
 			}
 		});
 		INSTANCE = this;
-		this.clients = clients;
+		this.clients = c;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 535, 370);
 		contentPane = new JPanel();
@@ -49,10 +57,30 @@ public class FrameRecovery extends JFrame {
 		model.addColumn("");
 		model.addColumn("");
 		model.addColumn("");
-		
+
 		table = new JTable();
 		table.setModel(model);
 		scrollPane.setViewportView(table);
+		
+		popupMenu = new JPopupMenu();
+		
+		JMenuItem mntmReload = new JMenuItem("Reload");
+		mntmReload.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (Client c : clients) {
+					try {
+						c.addToSendQueue(new Packet130GetEntries(c));
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+				}
+			}
+		});
+		popupMenu.add(mntmReload);
+		
+		addPopup(scrollPane, popupMenu);
+		addPopup(table, popupMenu);
 	}
 	
 	public void addEntry(Client client, String[] data) {
@@ -65,5 +93,23 @@ public class FrameRecovery extends JFrame {
 		}
 		
 		model.addRow(data1);
+	}
+	
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 }
