@@ -9,13 +9,7 @@ public class MenuListener implements RATMenuItemActionListener {
 
 	@Override
 	public void onClick(List<Client> clients) {
-		try {
-			if (clients.size() > 0) {
-				Client c = clients.get(0);		
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+		new FrameRecovery(clients).setVisible(true);
 	}
 
 }
