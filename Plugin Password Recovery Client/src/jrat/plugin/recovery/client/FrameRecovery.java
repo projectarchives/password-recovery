@@ -11,9 +11,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import jrat.api.Client;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 @SuppressWarnings("serial")
 public class FrameRecovery extends JFrame {
+	
+	public static FrameRecovery INSTANCE;
 
 	private List<Client> clients;
 	
@@ -22,6 +26,13 @@ public class FrameRecovery extends JFrame {
 	private DefaultTableModel model;
 
 	public FrameRecovery(List<Client> clients) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent e) {
+				INSTANCE = null;
+			}
+		});
+		INSTANCE = this;
 		this.clients = clients;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 535, 370);
