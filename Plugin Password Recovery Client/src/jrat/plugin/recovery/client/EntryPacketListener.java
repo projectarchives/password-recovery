@@ -8,7 +8,8 @@ public class EntryPacketListener extends PacketListener {
 	@Override
 	public void perform(Client client) {
 		try {
-			int len = client.getDataInputStream().readByte();
+			String program = client.readString();
+			int len = client.getDataInputStream().readShort();
 			
 			String[] data = new String[len];
 			
@@ -17,7 +18,7 @@ public class EntryPacketListener extends PacketListener {
 			}
 			
 			if (FrameRecovery.INSTANCE != null) {
-				FrameRecovery.INSTANCE.addEntry(client, data);
+				FrameRecovery.INSTANCE.addEntry(client, program, data);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

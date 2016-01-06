@@ -85,13 +85,14 @@ public class FrameRecovery extends JFrame {
 		addPopup(table, popupMenu);
 	}
 	
-	public void addEntry(Client client, String[] data) {
-		String[] data1 = new String[data.length + 1];
+	public void addEntry(Client client, String program, String[] data) {
+		String[] data1 = new String[data.length + 2];
 		
-		data1[0] = client.getIP();
+		data1[0] = program;
+		data1[1] = client.getIP();
 		
 		for (int i = 0; i < data.length; i++) {
-			data1[i + 1] = data[i];
+			data1[i + 2] = data[i];
 		}
 		
 		model.addRow(data1);
