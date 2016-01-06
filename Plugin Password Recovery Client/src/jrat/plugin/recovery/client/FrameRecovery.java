@@ -18,11 +18,12 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import jrat.api.Client;
 import jrat.api.Icons;
+import jrat.api.ui.DefaultJTable;
+import jrat.api.ui.DefaultJTableCellRenderer;
 
 @SuppressWarnings("serial")
 public class FrameRecovery extends JFrame {
@@ -63,10 +64,10 @@ public class FrameRecovery extends JFrame {
 		model.addColumn("Password");
 		model.addColumn("");
 
-		table = new JTable();
+		table = new DefaultJTable();
 		table.setModel(model);
 		table.setRowHeight(25);
-		table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+		table.setDefaultRenderer(Object.class, new DefaultJTableCellRenderer() {
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
