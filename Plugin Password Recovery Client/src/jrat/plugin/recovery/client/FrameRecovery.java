@@ -11,12 +11,14 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import jrat.api.Client;
@@ -63,6 +65,21 @@ public class FrameRecovery extends JFrame {
 
 		table = new JTable();
 		table.setModel(model);
+		table.setRowHeight(25);
+		table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				
+				if (column == 0) {
+					label.setIcon(Icons.getIcon("Password Recovery", "/icons/" + label.getText() + ".png"));
+				} else {
+					label.setIcon(null);
+				}
+				
+				return label;
+			}
+		});
 		scrollPane.setViewportView(table);
 		
 		popupMenu = new JPopupMenu();
