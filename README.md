@@ -20,3 +20,4 @@
 
 - Stub
 	- [Stub API](https://github.com/java-rat/jrat-stub-api)
+	- [sqlite-jdbc](https://bitbucket.org/xerial/sqlite-jdbc/downloads)
