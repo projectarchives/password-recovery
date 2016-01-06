@@ -31,7 +31,7 @@ public class Chrome extends AbstractRecoverer {
 
 			String password = new String(NativeUtils.cryptUnprotectData(results.getBytes("password_value")));
 
-			list.add(new String[] { address, username, password });
+			list.add(new String[] { username, password, address });
 		}
 
 		return list;
