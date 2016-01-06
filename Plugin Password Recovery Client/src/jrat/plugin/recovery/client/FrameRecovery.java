@@ -55,9 +55,10 @@ public class FrameRecovery extends JFrame {
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 		
 		model = new DefaultTableModel();
+		model.addColumn("Program");
 		model.addColumn("Client");
-		model.addColumn("");
-		model.addColumn("");
+		model.addColumn("Username");
+		model.addColumn("Password");
 		model.addColumn("");
 
 		table = new JTable();
