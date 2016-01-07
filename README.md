@@ -21,3 +21,4 @@
 - Stub
 	- [Stub API](https://github.com/java-rat/jrat-stub-api)
 	- [sqlite-jdbc](https://bitbucket.org/xerial/sqlite-jdbc/downloads)
+	- [oslib](https://github.com/redpois0n/oslib)
