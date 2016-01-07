@@ -10,8 +10,15 @@
 ## Packets
 
 | Packet Name	| Header
-| ---           |:---
+| ---           | :---
 | GETENTRIES	| 130
+
+## Supported Applications
+
+| Application 	| Operating Systems
+| ---		| :---
+| Google Chrome	| Windows
+| FileZilla	| All
 
 ## Dependencies
 
