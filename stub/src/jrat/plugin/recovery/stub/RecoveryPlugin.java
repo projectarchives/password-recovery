@@ -13,11 +13,6 @@ public class RecoveryPlugin extends StubPlugin {
 	
 	private DataInputStream dis;
 	private DataOutputStream dos;
-	
-	@Override
-	public void onStart() throws Exception {
-		
-	}
 
 	@Override
 	public void onDisconnect(Exception ex) throws Exception {
