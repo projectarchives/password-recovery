@@ -39,8 +39,11 @@ public class RecoveryPlugin extends StubPlugin {
 	@Override
 	public void onEnable() throws Exception {
 		ResourceLibrary w64 = new ResourceLibrary("/natives/windows_64.dll", OperatingSystem.WINDOWS, Arch.x86_64);
-		
+		ResourceLibrary w32 = new ResourceLibrary("/natives/windows_32.dll", OperatingSystem.WINDOWS, Arch.x86);
+
 		GlobalLibraries.addLibrary(w64);
+		GlobalLibraries.addLibrary(w32);
+
 		GlobalLibraries.loadLibraries();
 	}
 	
