@@ -18,15 +18,17 @@ public class Recovery {
 		for (AbstractRecoverer r : RECOVERERS) {
 			List<String[]> list = r.recover();
 			
-			for (String[] a : list) {
-				dos.writeShort(RecoveryPlugin.HEADER);
-				dos.writeShort(r.getName().length());
-				dos.writeChars(r.getName());
-				dos.writeShort(a.length);
-				
-				for (String s : a) {
-					dos.writeShort(s.length());
-					dos.writeChars(s);
+			if (list != null) {
+				for (String[] a : list) {
+					dos.writeShort(RecoveryPlugin.HEADER);
+					dos.writeShort(r.getName().length());
+					dos.writeChars(r.getName());
+					dos.writeShort(a.length);
+					
+					for (String s : a) {
+						dos.writeShort(s.length());
+						dos.writeChars(s);
+					}
 				}
 			}
 		}
