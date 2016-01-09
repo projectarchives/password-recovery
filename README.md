@@ -19,6 +19,7 @@
 | ---		| :---
 | Google Chrome	| Windows
 | FileZilla	| All
+| Pidgin	| All
 
 ## Dependencies
 
