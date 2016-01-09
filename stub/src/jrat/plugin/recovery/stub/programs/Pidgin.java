@@ -7,6 +7,8 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import jrat.plugin.recovery.stub.Utils;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -39,9 +41,9 @@ public class Pidgin extends AbstractRecoverer {
 				if (n.getNodeType() == Node.ELEMENT_NODE) {
 					Element e = (Element) n;
 
-					String username = getTagValue("name", e);
-					String password = getTagValue("password", e);
-					String protocol = getTagValue("protocol", e);
+					String username = Utils.getTagValue("name", e);
+					String password = Utils.getTagValue("password", e);
+					String protocol = Utils.getTagValue("protocol", e);
 					
 					list.add(new String[] { username, password, protocol });
 				}
@@ -51,11 +53,6 @@ public class Pidgin extends AbstractRecoverer {
 		return list;
 	}
 
-	private static String getTagValue(String tag, Element e) {
-		NodeList list = e.getElementsByTagName(tag).item(0).getChildNodes();
-		Node node = (Node) list.item(0);
-		return node == null ? "" : node.getNodeValue();
-	}
 	
 	@Override
 	public String getName() {
